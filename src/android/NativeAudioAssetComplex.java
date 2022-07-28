@@ -52,7 +52,7 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 		Boolean playing = mp.isPlaying();
 		if ( playing )
 		{
-			mp.pause();
+			//mp.pause();
 			mp.setLooping(loop);
 			mp.seekTo(0);
 			mp.start();

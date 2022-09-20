@@ -80,9 +80,9 @@ NSString* INFO_VOLUME_CHANGED = @"(NATIVE AUDIO) Volume changed.";
     [self.commandDelegate runInBackground:^{
         if (existingReference == nil) {
 
-            NSString* basePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"www"];
+            NSString* basePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"public"];
             NSString* path = [NSString stringWithFormat:@"%@", assetPath];
-            NSString* pathFromWWW = [NSString stringWithFormat:@"%@/%@", basePath, assetPath];
+            NSString* pathFromPublic = [NSString stringWithFormat:@"%@/%@", basePath, assetPath];
 
             if ([[NSFileManager defaultManager] fileExistsAtPath : path]) {
 
@@ -96,8 +96,8 @@ NSString* INFO_VOLUME_CHANGED = @"(NATIVE AUDIO) Volume changed.";
                 NSString *RESULT = [NSString stringWithFormat:@"%@ (%@)", INFO_ASSET_LOADED, audioID];
                 [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: RESULT] callbackId:callbackId];
 
-            } else if ([[NSFileManager defaultManager] fileExistsAtPath : pathFromWWW]) {
-                NSURL *pathURL = [NSURL fileURLWithPath : pathFromWWW];
+            } else if ([[NSFileManager defaultManager] fileExistsAtPath : pathFromPublic]) {
+                NSURL *pathURL = [NSURL fileURLWithPath : pathFromPublic];
                 CFURLRef        soundFileURLRef = (CFURLRef) CFBridgingRetain(pathURL);
                 SystemSoundID soundID;
                 AudioServicesCreateSystemSoundID(soundFileURLRef, & soundID);
@@ -164,7 +164,7 @@ NSString* INFO_VOLUME_CHANGED = @"(NATIVE AUDIO) Volume changed.";
 
     [self.commandDelegate runInBackground:^{
         if (existingReference == nil) {
-            NSString* basePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"www"];
+            NSString* basePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"public"];
             NSString* path = [NSString stringWithFormat:@"%@/%@", basePath, assetPath];
 
             if ([[NSFileManager defaultManager] fileExistsAtPath : path]) {
